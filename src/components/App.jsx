@@ -14,6 +14,22 @@ class Phonebook extends React.Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = JSON.parse(window.localStorage.getItem('contacts'));
+    if (contacts.length) {
+      this.setState({ contacts });
+    }
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      window.localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
+
   handleAddContacts = contact => {
     const copy = this.state.contacts.find(item => item.name === contact.name);
 
