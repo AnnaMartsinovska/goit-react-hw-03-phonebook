@@ -16,7 +16,7 @@ class Phonebook extends React.Component {
 
   componentDidMount() {
     const contacts = JSON.parse(window.localStorage.getItem('contacts'));
-    if (contacts.length >= 0) {
+    if (contacts?.length) {
       this.setState({ contacts });
     }
   }
